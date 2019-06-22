@@ -10,7 +10,7 @@ import { GBServer } from '../../../src/app';
  * Support for Whatsapp.
  */
 export class WhatsappDirectLine extends GBService {
-  public pollInterval = 1000;
+  public pollInterval = 3000;
   public directLineClientName = 'DirectLineClient';
 
   public directLineClient: any;
@@ -81,7 +81,7 @@ export class WhatsappDirectLine extends GBService {
       return; // Exit here.
     }
 
-    GBLog.info(`GBWhatsapp: Hook called. from: ${from}(${fromName}), text: ${text})`);
+    GBLog.info(`GBWhatsapp: RCV ${from}(${fromName}): ${text})`);
 
     const conversationId = this.conversationIds[from];
 
@@ -179,7 +179,7 @@ export class WhatsappDirectLine extends GBService {
     let output = '';
 
     if (activity.text) {
-      GBLog.info(`GBWhatsapp: MSG: ${activity.text}`);
+      GBLog.info(`GBWhatsapp: SND ${from}(fromName): ${activity.text}`);
       output = activity.text;
     }
 
